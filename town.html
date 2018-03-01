@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drzave</title>
+		<style>
+			body {
+				background-image:url('img/back.jpg');
+				background-image:center;
+				text-align: center;
+			}
+            #wrapper {
+                width: 720px;
+                margin:auto;
+            }
+			#win {
+				width:220px;
+				margin:20px auto;
+				padding: 3px;
+				border:3px solid aqua;
+				background: white;
+				box-shadow: -7px 16px 22px #000000;	
+			}
+			#win img {
+				width:200px;
+				height: 130px;
+			}
+		</style>
+                <script>
+                var catalogue = {
+                    Srbija : [{id: 1, grad: "Beograd", stanovnika: "7 500 000 M", jezik : "Srpski"}],
+                    RS : [{id: 2, grad: "Banja Luka", stanovnika: "3 800 000 M", jezik : "Srpski"}],
+                    Rusija : [{id: 3, grad: "Moskva", stanovnika: "142 856 000 M", jezik : "Ruski"}],
+					Kuba : [{id: 4, grad: "Havana", stanovnika: "11 183 000 M", jezik : "Spanski"}]
+                };
+                    
+				function get_town(x){
+                    var town, winText = "";
+					var results = document.getElementById("results");
+					results.innerHTML = "";
+                    if(catalogue[x] != undefined){
+                        for(key in catalogue[x]){
+                            town = catalogue[x][key];
+                            winText ='<div id="win"> <img src="img/img'+
+							town.id+'.jpg"<h4>Grad: '+
+							town.grad+'</h4><p>Stanovnika: '+
+							town.stanovnika+'</p><p>Jezik: '+
+							town.jezik+'</p></div>';
+							results.innerHTML += winText;
+                            }
+                    }else{
+                        document.write("In our database there are no " + x + " towns.");
+                    }
+                }
+		    
+	
+		    
+                </script>
+    </head>
+    <body>
+	<div id="wrapper">
+	
+	    <form>
+		<select onchange="get_town(this.value)">
+		    <script>
+			for(var zemlja in catalogue){
+			    document.write("<option>" + zemlja + "</option>");
+			}
+		    </script>
+		</select>
+	    </form>
+	    <div id="results"></div>
+	</div>    
+    </body>
+</html>
